@@ -1,2 +1,2 @@
 # ansible-ca
-ORTSOC Infra Playbook: Certificate Authority
+ORTSOC Infra Role: Certificate Authority
