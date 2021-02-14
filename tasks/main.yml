@@ -1,2 +1,24 @@
 ---
-# tasks file for ansible-ca
+
+
+- name: copy root auth
+  hosts: root_auth
+  ansible.builtin.copy:
+    src: /rootAuthority/GenRootAuthority.sh
+    dest: ???
+    owner: root
+    group: root
+    mode: 0644
+    
+    
+- name: copy root auth
+  hosts: Intermediate_auth
+  ansible.builtin.copy:
+    src: /IntermediateAuthority/GenIntermediateAuthority.sh
+    dest: ???
+    owner: root
+    group: root
+    mode: 0644
+    
+    
+    
