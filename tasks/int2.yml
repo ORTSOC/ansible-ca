@@ -1,0 +1,10 @@
+---
+  - name: copy Signed Int crt back to Int CA
+    become: true
+    ansible.builtin.copy:
+      src: /tmp/IntermediateCA.crt
+      dest: /ca-stuff/
+      owner: root
+      group: root
+      mode: 0666
+    when: ca_type == "int"

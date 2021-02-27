@@ -1,0 +1,29 @@
+---
+  
+  - name: copy genRootAuth
+    become: true
+    ansible.builtin.copy:
+      src: GenRootAuthority.sh
+      dest: /ca-stuff/
+      owner: root
+      group: root
+      mode: 0755
+    when: ca_type == "root"
+
+  - name: run GenIRootAuth
+    become: true
+    shell: /ca-stuff/GenRootAuthority.sh
+    args:
+      chdir: /ca-stuff/    
+    when: ca_type == "root"  
+      
+    
+  - name: copy SignIntCsr
+    become: true
+    ansible.builtin.copy:
+      src: "SignIntermediateCSR.sh"
+      dest: /ca-stuff/
+      owner: root
+      group: root
+      mode: 0755   
+    when: ca_type == "root" 

@@ -1,3 +1,6 @@
 ---
 
-- include: "rootca.yml"
+- include: "root1.yml"
+- include: "int1.yml"
+- include: "root2.yml"
+- include: "int2.yml"
