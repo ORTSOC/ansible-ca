@@ -1,0 +1,109 @@
+---
+  
+  - name: copy genRootAuth
+    become: true
+    ansible.builtin.copy:
+      src: GenRootAuthority.sh
+      dest: /ca-stuff/
+      owner: root
+      group: root
+      mode: 0755
+    when: ca_type == "root"
+
+  - name: run GenIRootAuth
+    become: true
+    shell: /ca-stuff/GenRootAuthority.sh
+    args:
+      chdir: /ca-stuff/    
+    when: ca_type == "root"  
+      
+    
+  - name: copy SignIntCsr
+    become: true
+    ansible.builtin.copy:
+      src: "SignIntermediateCSR.sh"
+      dest: /ca-stuff/
+      owner: root
+      group: root
+      mode: 0755   
+    when: ca_type == "root" 
+   
+  - name: copy GenIntAuth
+    become: true
+    ansible.builtin.copy:
+      src: GenIntermediateAuthority.sh
+      dest: /ca-stuff/
+      owner: root
+      group: root
+      mode: 0755
+    when: ca_type == "int"
+    
+  - name: copy GenP12Cert
+    become: true
+    ansible.builtin.copy:
+      src: GenerateP12Cert.sh
+      dest: /ca-stuff/
+      owner: root
+      group: root
+      mode: 0755
+    when: ca_type == "int" 
+    
+  - name: copy GenCert
+    become: true
+    ansible.builtin.copy:
+      src: GenerateCertificate.sh
+      dest: /ca-stuff/
+      owner: root
+      group: root
+      mode: 0755
+    when: ca_type == "int"
+      
+  - name: run GenIntAuth
+    become: true
+    shell: /ca-stuff/GenIntermediateAuthority.sh
+    args:
+      chdir: /ca-stuff/
+    when: ca_type == "int"
+      
+  - name: fetch IntermediateCA.csr
+    become: true
+    ansible.builtin.fetch:
+      src: /ca-stuff/IntermediateCA.csr
+      dest: /tmp/IntermediateCA.csr
+      flat: yes
+    when: ca_type == "int"
+      
+  - name: copy Int CSR to root CA
+    become: true
+    ansible.builtin.copy:
+      src: /tmp/IntermediateCA.csr
+      dest: /ca-stuff/
+      owner: root
+      group: root
+      mode: 0666
+    when: ca_type == "root"
+      
+  - name: run sign Int script
+    become: true
+    shell: /ca-stuff/SignIntermediateCSR.sh
+    args:
+      chdir: /ca-stuff/  
+    when: ca_type == "root"
+  
+  - name: fetch signed Intermediate crt
+    become: true
+    ansible.builtin.fetch:
+      src: /ca-stuff/IntermediateCA.crt
+      dest: /tmp/IntermediateCA.crt
+      flat: yes
+    when: ca_type == "root"
+      
+  - name: copy Signed Int crt back to Int CA
+    become: true
+    ansible.builtin.copy:
+      src: /tmp/IntermediateCA.crt
+      dest: /ca-stuff/
+      owner: root
+      group: root
+      mode: 0666
+    when: ca_type == "int"
