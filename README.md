@@ -6,7 +6,7 @@ Deploys OpenSSL, a certificate authority.
 
 To generate a new standard or p12 certificate:
 	* login to the int authority as ortsoc-admin
-	* run /ca-stuff/GenerateCertificate.sh [name] or/ca-stuff/GenerateP12Cert.sh [name]
+	* run /ca-stuff/GenerateCertificate.sh [name] [CN] [SAN] or/ca-stuff/GenerateP12Cert.sh [name] [CN] [SAN]
 	* Both will require a passphrase when generating the RSA key
 	* To decrypt the RSA key run: openssl rsa -in [keyfile.key]
 
