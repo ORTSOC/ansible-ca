@@ -10,6 +10,10 @@ To generate a new standard or p12 certificate:
 	* Both will require a passphrase when generating the RSA key
 	* To decrypt the RSA key run: openssl rsa -in [keyfile.key]
 
+
+TODO:
+	Enable password requirement for root and intermediate crts.
+
 Requirements
 ------------
 
