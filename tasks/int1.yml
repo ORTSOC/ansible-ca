@@ -4,9 +4,9 @@
     ansible.builtin.copy:
       src: GenIntermediateAuthority.sh
       dest: /ca-stuff/
-      owner: root
-      group: root
-      mode: 0755
+      owner: ortsoc-admin
+      group: ortsoc-admin
+      mode: 0774
     when: ca_type == "int"
     
   - name: copy GenP12Cert
@@ -14,9 +14,9 @@
     ansible.builtin.copy:
       src: GenerateP12Cert.sh
       dest: /ca-stuff/
-      owner: root
-      group: root
-      mode: 0755
+      owner: ortsoc-admin
+      group: ortsoc-admin
+      mode: 0774
     when: ca_type == "int" 
     
   - name: copy GenCert
@@ -24,9 +24,9 @@
     ansible.builtin.copy:
       src: GenerateCertificate.sh
       dest: /ca-stuff/
-      owner: root
-      group: root
-      mode: 0755
+      owner: ortsoc-admin
+      group: ortsoc-admin
+      mode: 0774
     when: ca_type == "int"
       
   - name: run GenIntAuth
