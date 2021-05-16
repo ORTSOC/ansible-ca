@@ -4,7 +4,7 @@
     ansible.builtin.copy:
       src: /tmp/IntermediateCA.crt
       dest: /ca-stuff/
-      owner: root
-      group: root
-      mode: 0666
+      owner: ortsoc-admin
+      group: ortsoc-admin
+      mode: 0774
     when: ca_type == "int"
