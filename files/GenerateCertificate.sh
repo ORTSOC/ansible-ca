@@ -10,7 +10,7 @@ echo ""
 serial=`date +%s`
 
 
-openssl genrsa -out /ca-stuff/"$1".key 2048
+openssl genrsa -aes256 -out /ca-stuff/"$1".key 2048
 
 openssl req -new -key /ca-stuff/"$1".key -subj "/C=US/ST=Oregon/L=Corvallis/O=ORTSOC/CN=$1_cert" -out /ca-stuff/"$1".csr
 
