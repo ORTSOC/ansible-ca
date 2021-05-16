@@ -10,5 +10,5 @@
     when: ca_type == "int"
     
   - name: delete local tmp files
-    local_action: rm /tmp/IntermediateCA.crt /tmp/IntermediateCA.csr
+    local_action: command rm /tmp/IntermediateCA.crt /tmp/IntermediateCA.csr
     
