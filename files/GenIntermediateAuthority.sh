@@ -9,8 +9,8 @@ echo ""
 
 openssl genrsa -out /ca-stuff/IntermediateCA.key 4096
 
-chmod 0770 /ca-stuff/IntermediateCA.key
-chgrp ortsoc-admin /ca-stuff/ntermediateCA.key
+sudo chmod 0770 /ca-stuff/IntermediateCA.key
+sudo chgrp ortsoc-admin /ca-stuff/IntermediateCA.key
 
 
 echo "Generating Intermediate Authority Certificate Signing Request"
