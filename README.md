@@ -20,6 +20,11 @@ Inventory Host Variables
 Example Inventory File
 ------------
 
+```
+[ca]
+ca.my.domain ca_type=root
+ca.my.domain ca_type=int
+```
 
 License
 -------
