@@ -2,7 +2,7 @@
 
   - name: check if auth has been configured already
     stat:
-      path: /ca-stuff/.intauth_registered
+      path: /ca-stuff/.int_auth_registered
     register: int_auth_configured_file
 
   - name: copy Signed Int crt back to Int CA
@@ -20,7 +20,7 @@
   - name: mark int auth as completed
     copy:
       content: "yes"
-      dest: /ca-stuff/.intauth_registered
+      dest: /ca-stuff/.int_auth_registered
       force: no
       group: ortsoc-admin
       owner: ortsoc-admin

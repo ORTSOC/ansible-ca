@@ -2,7 +2,7 @@
 
   - name: check if auth has been configured already
     stat:
-      path: /usr/share/elasticseach/.auth_configured
+      path: /ca-stuff/.int_auth_registered
     register: int_auth_configured_file
 
   - name: copy GenIntAuth
