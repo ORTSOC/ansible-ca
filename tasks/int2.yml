@@ -25,6 +25,7 @@
       group: ortsoc-admin
       owner: ortsoc-admin
       mode: 0660
+    when: ca_type == "int"
     
 
     

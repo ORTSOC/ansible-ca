@@ -36,7 +36,7 @@
       ca_type == "root" and
       not root_auth_configured_file.stat.exists
      
-  - name: mark int auth as completed
+  - name: mark root auth as completed
     copy:
       content: "yes"
       dest: /ca-stuff/.root_auth_registered
@@ -44,3 +44,4 @@
       group: ortsoc-admin
       owner: ortsoc-admin
       mode: 0660     
+    when: ca_type == "root"
