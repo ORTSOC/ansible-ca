@@ -13,6 +13,7 @@ To generate a new standard or p12 certificate:
 
 TODO:
 	Enable password requirement for root and intermediate crts.
+	Remove files from ansible host /tmp/ after running
 
 Requirements
 ------------

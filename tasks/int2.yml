@@ -9,6 +9,5 @@
       mode: 0774
     when: ca_type == "int"
     
-  - name: delete local tmp files
-    local_action: command rm /tmp/IntermediateCA.crt /tmp/IntermediateCA.csr
+
     
