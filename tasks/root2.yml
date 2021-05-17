@@ -1,9 +1,9 @@
 ---
 
-    - name: check if auth has been configured already
-      stat:
-        path: /ca-stuff/.root_auth_registered
-      register: root_auth_configured_file
+  - name: check if auth has been configured already
+    stat:
+      path: /ca-stuff/.root_auth_registered
+    register: root_auth_configured_file
 
   - name: copy Int CSR to root CA
     become: true
