@@ -1,4 +1,10 @@
 ---
+
+  - name: check if auth has been configured already
+    stat:
+      path: /ca-stuff/.intauth_registered
+    register: int_auth_configured_file
+
   - name: copy Signed Int crt back to Int CA
     become: true
     ansible.builtin.copy:
@@ -7,7 +13,18 @@
       owner: ortsoc-admin
       group: ortsoc-admin
       mode: 0774
-    when: ca_type == "int"
+    when: >
+      ca_type == "int" and
+      not int_auth_configured_file.stat.exists
+        
+  - name: mark int auth as completed
+    copy:
+      content: "yes"
+      dest: /ca-stuff/.intauth_registered
+      force: no
+      group: ortsoc-admin
+      owner: ortsoc-admin
+      mode: 0660
     
 
     

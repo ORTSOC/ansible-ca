@@ -1,4 +1,10 @@
 ---
+
+  - name: check if auth has been configured already
+    stat:
+      path: /usr/share/elasticseach/.auth_configured
+    register: int_auth_configured_file
+
   - name: copy GenIntAuth
     become: true
     ansible.builtin.copy:
@@ -34,8 +40,10 @@
     shell: /ca-stuff/GenIntermediateAuthority.sh
     args:
       chdir: /ca-stuff/
-    when: ca_type == "int"
-      
+    when: >
+      ca_type == "int" and
+      not int_auth_configured_file.stat.exists
+           
   - name: fetch IntermediateCA.csr
     become: true
     ansible.builtin.fetch:

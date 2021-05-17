@@ -1,5 +1,10 @@
 ---
   
+  - name: check if auth has been configured already
+    stat:
+      path: /ca-stuff/.root_auth_registered
+    register: root_auth_configured_file
+  
   - name: copy genRootAuth
     become: true
     ansible.builtin.copy:
@@ -15,9 +20,10 @@
     shell: /ca-stuff/GenRootAuthority.sh
     args:
       chdir: /ca-stuff/    
-    when: ca_type == "root"  
+    when: >
+      ca_type == "root" and
+      not root_auth_configured_file.stat.exists
       
-    
   - name: copy SignIntCsr
     become: true
     ansible.builtin.copy:
