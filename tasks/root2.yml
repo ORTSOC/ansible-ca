@@ -36,7 +36,6 @@
       ca_type == "root" and
       not root_auth_configured_file.stat.exists
      
-     
   - name: mark int auth as completed
     copy:
       content: "yes"

@@ -32,4 +32,6 @@
       owner: root
       group: root
       mode: 0755   
-    when: ca_type == "root" 
+    when: >
+      ca_type == "root" and
+      not root_auth_configured_file.stat.exists

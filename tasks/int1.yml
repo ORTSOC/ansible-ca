@@ -50,5 +50,7 @@
       src: /ca-stuff/IntermediateCA.csr
       dest: /tmp/IntermediateCA.csr
       flat: yes
-    when: ca_type == "int"
+    when: >
+      ca_type == "int" and
+      not int_auth_configured_file.stat.exists
       
